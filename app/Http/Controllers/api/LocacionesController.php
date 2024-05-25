@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\api;
 
 use App\Http\Controllers\Controller;
+use App\Models\Locaciones;
 use Illuminate\Http\Request;
 
 class LocacionesController extends Controller
@@ -12,7 +13,7 @@ class LocacionesController extends Controller
      */
     public function index()
     {
-        //
+        return Locaciones::all();
     }
 
     /**
@@ -20,7 +21,8 @@ class LocacionesController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $locacion = Locaciones::create($request->all());
+        return response()->json($locacion, 201);
     }
 
     /**
@@ -28,7 +30,7 @@ class LocacionesController extends Controller
      */
     public function show(string $id)
     {
-        //
+        return Locaciones::findOrFail($id);
     }
 
     /**
@@ -36,7 +38,9 @@ class LocacionesController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $locacion = Locaciones::findOrFail($id);
+        $locacion->update($request->all());
+        return response()->json($locacion, 200);
     }
 
     /**
@@ -44,6 +48,8 @@ class LocacionesController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $locacion = Locaciones::findOrFail($id);
+        $locacion->delete();
+        return response()->json(null, 204);
     }
 }
