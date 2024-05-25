@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\api;
 
 use App\Http\Controllers\Controller;
+use App\Models\Conciertos;
 use Illuminate\Http\Request;
 
 class ConciertosController extends Controller
@@ -12,7 +13,7 @@ class ConciertosController extends Controller
      */
     public function index()
     {
-        //
+        return Conciertos::all();
     }
 
     /**
@@ -20,7 +21,8 @@ class ConciertosController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $concierto = Conciertos::create($request->all());
+        return response()->json($concierto, 201);
     }
 
     /**
@@ -28,7 +30,7 @@ class ConciertosController extends Controller
      */
     public function show(string $id)
     {
-        //
+        return Conciertos::findOrFail($id);
     }
 
     /**
@@ -36,7 +38,9 @@ class ConciertosController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $concierto = Conciertos::findOrFail($id);
+        $concierto->update($request->all());
+        return response()->json($concierto, 200);
     }
 
     /**
@@ -44,6 +48,8 @@ class ConciertosController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $concierto = Conciertos::findOrFail($id);
+        $concierto->delete();
+        return response()->json(null, 204);
     }
 }
