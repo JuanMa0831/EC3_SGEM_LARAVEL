@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\api;
 
 use App\Http\Controllers\Controller;
+use App\Models\Entradas;
 use Illuminate\Http\Request;
 
 class EntradasController extends Controller
@@ -12,7 +13,7 @@ class EntradasController extends Controller
      */
     public function index()
     {
-        //
+        return Entradas::all();
     }
 
     /**
@@ -20,7 +21,8 @@ class EntradasController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $entrada = Entradas::create($request->all());
+        return response()->json($entrada, 201);
     }
 
     /**
@@ -28,7 +30,7 @@ class EntradasController extends Controller
      */
     public function show(string $id)
     {
-        //
+        return Entradas::findOrFail($id);
     }
 
     /**
@@ -36,7 +38,9 @@ class EntradasController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $entrada = Entradas::findOrFail($id);
+        $entrada->update($request->all());
+        return response()->json($entrada, 200);
     }
 
     /**
@@ -44,6 +48,8 @@ class EntradasController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $entrada = Entradas::findOrFail($id);
+        $entrada->delete();
+        return response()->json(null, 204);
     }
 }
