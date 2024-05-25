@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\api;
 
 use App\Http\Controllers\Controller;
+use App\Models\Artistas;
 use Illuminate\Http\Request;
 
 class ArtistasController extends Controller
@@ -12,7 +13,7 @@ class ArtistasController extends Controller
      */
     public function index()
     {
-        //
+        return Artistas::all();
     }
 
     /**
@@ -20,7 +21,8 @@ class ArtistasController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $artista = Artistas::create($request->all());
+        return response()->json($artista, 201);
     }
 
     /**
@@ -28,7 +30,7 @@ class ArtistasController extends Controller
      */
     public function show(string $id)
     {
-        //
+        return Artistas::findOrFail($id);
     }
 
     /**
@@ -36,7 +38,9 @@ class ArtistasController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $artista = Artistas::findOrFail($id);
+        $artista->update($request->all());
+        return response()->json($artista, 200);
     }
 
     /**
@@ -44,6 +48,8 @@ class ArtistasController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $artista = Artistas::findOrFail($id);
+        $artista->delete();
+        return response()->json(null, 204);
     }
 }
