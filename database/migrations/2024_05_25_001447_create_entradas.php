@@ -13,8 +13,10 @@ return new class extends Migration
     {
         Schema::create('entradas', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('concierto_id')->constrained('conciertos');
-            $table->foreignId('cliente_id')->constrained('clientes');
+            //$table->foreignId('concierto_id')->constrained('conciertos');
+            //$table->foreignId('cliente_id')->constrained('clientes');
+            //$table->foreign('concierto_id')->references('id')->on('conciertos');
+            //$table->foreign('cliente_id')->references('id')->on('clientes');
             $table->decimal('precio', 8, 2);
             $table->date('fecha_compra');
             $table->timestamps();
