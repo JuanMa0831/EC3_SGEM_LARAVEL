@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('nombre');
             $table->dateTime('fecha');
-            $table->foreignId('locacion_id')->constrained('locations');
+            $table->foreignId('locacion_id')->constrained('locaciones');
             $table->enum('estado', ['programado', 'realizado', 'cancelado']);
             $table->integer('cantidad_entradas');
             $table->integer('entradas_vendidas')->default(0);
