@@ -8,12 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 class Artistas extends Model
 {
     use HasFactory;
-    protected $fillable = [
-        'nombre', 'genero_musical'
-    ];
-
-    public function conciertos()
-    {
-        return $this->belongsToMany(Conciertos::class, 'concierto_artista');
-    }
+        public $timestamps = false;
+        protected $primaryKey = 'id';
+        protected $table = 'artistas';
+    
 }

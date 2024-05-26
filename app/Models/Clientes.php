@@ -8,12 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 class Clientes extends Model
 {
     use HasFactory;
-    protected $fillable = [
-        'nombre', 'apellido', 'email', 'telefono'
-    ];
+    public $timestamps = false;
+    protected $primaryKey = 'id';
+    protected $table = 'clientes';
 
-    public function entradas()
-    {
-        return $this->hasMany(Entradas::class);
-    }
 }

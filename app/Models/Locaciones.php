@@ -8,12 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 class Locaciones extends Model
 {
     use HasFactory;
-    protected $fillable = [
-        'nombre', 'direccion', 'capacidad'
-    ];
+    public $timestamps = false;
+    protected $primaryKey = 'id';
+    protected $table = 'locaciones';
 
-    public function conciertos()
-    {
-        return $this->hasMany(Conciertos::class);
-    }
 }

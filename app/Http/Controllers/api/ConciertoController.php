@@ -3,17 +3,19 @@
 namespace App\Http\Controllers\api;
 
 use App\Http\Controllers\Controller;
+use Illuminate\support\Facades\DB;
 use App\Models\Conciertos;
 use Illuminate\Http\Request;
 
-class ConciertosController extends Controller
+class ConciertoController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        return Conciertos::all();
+        $conciertos = DB::table('conciertos')-> get();
+        return json_encode(['conciertos'=> $conciertos]);
     }
 
     /**
@@ -21,8 +23,8 @@ class ConciertosController extends Controller
      */
     public function store(Request $request)
     {
-        $concierto = Conciertos::create($request->all());
-        return response()->json($concierto, 201);
+        $conciertos = Conciertos::create($request->all());
+        return response()->json($conciertos, 201);
     }
 
     /**
@@ -38,9 +40,9 @@ class ConciertosController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        $concierto = Conciertos::findOrFail($id);
-        $concierto->update($request->all());
-        return response()->json($concierto, 200);
+        $conciertos = Conciertos::findOrFail($id);
+        $conciertos->update($request->all());
+        return response()->json($conciertos, 200);
     }
 
     /**
@@ -48,8 +50,8 @@ class ConciertosController extends Controller
      */
     public function destroy(string $id)
     {
-        $concierto = Conciertos::findOrFail($id);
-        $concierto->delete();
+        $conciertos = Conciertos::findOrFail($id);
+        $conciertos->delete();
         return response()->json(null, 204);
     }
 }

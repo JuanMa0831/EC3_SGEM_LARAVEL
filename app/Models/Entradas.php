@@ -8,17 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 class Entradas extends Model
 {
     use HasFactory;
-    protected $fillable = [
-        'concierto_id', 'cliente_id', 'precio', 'fecha_compra'
-    ];
+    public $timestamps = false;
+    protected $primaryKey = 'id';
+    protected $table = 'entradas';
 
-    public function concierto()
-    {
-        return $this->belongsTo(Conciertos::class);
-    }
-
-    public function cliente()
-    {
-        return $this->belongsTo(Clientes::class);
-    }
 }
